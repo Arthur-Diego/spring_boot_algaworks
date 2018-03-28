@@ -5,37 +5,50 @@
  */
 package com.algaworks.springboot.model;
 
-import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
- * @author arthur
+ * @author Arthur
  */
 @Entity
-@Table(name = "categoria")
-public class Categoria implements Serializable {
+@Table(name = "pessoa")
+public class Pessoa {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long codigo;
+    private Long codigo;
     
     @NotNull
-    @Size(min = 3, max = 20)
     private String nome;
+    
+    @NotNull
+    private Boolean ativo;
+    
+    @Embedded
+    private Endereco endereco;
 
-    public long getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(long codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     public String getNome() {
@@ -46,10 +59,18 @@ public class Categoria implements Serializable {
         this.nome = nome;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 89 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
+        hash = 47 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
 
@@ -64,11 +85,13 @@ public class Categoria implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Categoria other = (Categoria) obj;
-        if (this.codigo != other.codigo) {
+        final Pessoa other = (Pessoa) obj;
+        if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }
         return true;
     }
+    
+    
     
 }
