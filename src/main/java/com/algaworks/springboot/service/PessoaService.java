@@ -35,7 +35,7 @@ public class PessoaService {
     }
     
     private Pessoa findPessoaByCodigo(Long cod) throws EmptyResultDataAccessException {
-        Pessoa pessoaFind = repository.findOne(cod);
+        Pessoa pessoaFind = repository.findById(cod).get();
         if (pessoaFind == null) {
             throw new EmptyResultDataAccessException(1);
         }

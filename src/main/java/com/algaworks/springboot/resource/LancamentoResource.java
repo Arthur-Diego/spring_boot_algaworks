@@ -43,7 +43,7 @@ public class LancamentoResource {
 
     @GetMapping("/{cod}")
     public ResponseEntity<Lancamento> listLancamentos(@PathVariable Long cod) {
-        return Optional.ofNullable(repository.findOne(cod)).map(lancamento -> ResponseEntity.ok().body(lancamento)).orElseGet(() -> ResponseEntity.notFound().build());
+        return Optional.ofNullable(repository.findById(cod).get()).map(lancamento -> ResponseEntity.ok().body(lancamento)).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping

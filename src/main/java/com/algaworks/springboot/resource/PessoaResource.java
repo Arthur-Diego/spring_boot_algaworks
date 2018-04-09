@@ -56,16 +56,16 @@ public class PessoaResource {
         return ResponseEntity.status(HttpStatus.CREATED).body(pessoaCreated);
     }
 
-    @GetMapping("/{codigo}")
-    public ResponseEntity<Pessoa> buscarPeloCodigo(@PathVariable Long codigo) {
-        return Optional.ofNullable(repository.findOne(codigo)).map(pessoa -> ResponseEntity.ok().body(pessoa)).orElseGet(() -> ResponseEntity.notFound().build());
-    }
-    
-    @DeleteMapping("/{cod}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long cod){
-        repository.delete(cod);
-    }
+//    @GetMapping("/{codigo}")
+//    public ResponseEntity<Pessoa> buscarPeloCodigo(@PathVariable Long codigo) {
+//        return Optional.ofNullable(repository.findOne(codigo)).map(pessoa -> ResponseEntity.ok().body(pessoa)).orElseGet(() -> ResponseEntity.notFound().build());
+//    }
+//    
+//    @DeleteMapping("/{cod}")
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public void delete(@PathVariable Long cod){
+//        repository.delete(cod);
+//    }
     
     @PutMapping("/{cod}")
     public ResponseEntity<Pessoa> update(@PathVariable Long cod, @Valid @RequestBody Pessoa pessoa){

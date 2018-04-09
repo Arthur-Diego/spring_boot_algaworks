@@ -58,6 +58,6 @@ public class CategoriaResource {
     @GetMapping("/{codigo}")
     public ResponseEntity<Categoria> buscarPeloCodigo(@PathVariable Long codigo) {
 
-        return Optional.ofNullable(categoriaRepository.findOne(codigo)).map(categoria -> ResponseEntity.ok().body(categoria)).orElseGet(() -> ResponseEntity.notFound().build());
+        return Optional.ofNullable(categoriaRepository.findById(codigo).get()).map(categoria -> ResponseEntity.ok().body(categoria)).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
