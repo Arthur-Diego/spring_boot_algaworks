@@ -18,7 +18,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 /**
- *
+ * Classe que autoriza o acesso aos recursos
  * @author Arthur
  */
 @Configuration
